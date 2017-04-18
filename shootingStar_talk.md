@@ -47,10 +47,21 @@ Since we are using JavaScript, we have to signal our need to create an object wi
 
 Let's go back to our ball object. Here's an example of what our constructor for the ball object could look like:
 
-```
-var ball = function(xposition, yposition, size){
+```javascript
+function Ball(xposition, yposition, size){
   this.x = xposition;
   this.y = yposition;
   this.size = size;
 }
+```
+
+Great, we have our constructor function!
+
+Right now, it saves some information. Not very interesting, but crucial!
+
+How would we create an object with this?
+
+```javascript
+//underneath our Ball constructor!
+var b1 = new Ball(100,100,20);
 ```
