@@ -41,7 +41,16 @@ Accessing an object's qualities (its color, size, etc.) is accessed the same way
 `ball.color`.
 
 ## Constructors
-A constructor is a **special function**, but it is a function nonetheless. Every object is created based off of its constructor. The constructor is where you define an object. The constructor is where you give all the numbers, strings, and booleans a relation to each other. 
+A constructor is a **special function**, which every object is created from, but is a function nonetheless. The constructor is where you define an object. It is where you give all the numbers, strings, and booleans a relation to each other. 
 
-Since we are using JavaScript, we have to signal our computers that we need to create an object with our constructor function. That signal is the *new* keyword. 
+Since we are using JavaScript, we have to signal our need to create an object with our constructor function. That signal is the *new* keyword. 
 
+Let's go back to our ball object. Here's an example of what our constructor for the ball object could look like:
+
+```
+var ball = function(xposition, yposition, size){
+  this.x = xposition;
+  this.y = yposition;
+  this.size = size;
+}
+```
