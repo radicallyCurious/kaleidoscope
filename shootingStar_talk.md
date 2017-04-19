@@ -90,3 +90,91 @@ Creating functions for an object is pretty easy, and we will explore that while 
 ---
 
 ## Creating Our Shooting Stars
+
+### The Star Constructor
+Here's our ball class from earlier:
+
+```javascript
+function Ball(xposition, yposition, size_){
+  this.x = xposition;
+  this.y = yposition;
+  this.size = size_;
+}
+```
+
+We're going to change it up a bit to make our lives easier and to make sure our shooting stars act accurately.
+
+```javascript
+function Star(x_, y_, diameter_){
+    this.position = createVector(x, y);
+    this.velocity = createVector(random(2,5), random(-10,-5));
+    this.accel = createVector(0,0);
+    this.diameter = diameter_;
+}
+```
+
+A few things changed, such as the name of the constructor, the parameters, and the names of the attributes. Make sure you double check everything!
+
+Here's the breakdown.
+
+We create a vector called *position* (what's a vector?! more on this soon) that has an initial x and y component of the `x_` and `y_` passed to the constructor.
+
+Then, we create another vector called *velocity* with an initial x component of any number between 2 and 5 and a y component of any number between -10 and -5.
+
+We create a third vector called *accel* (for acceleration) with an initial x and y component of 0.
+
+We then set the *diameter* of our Star to the `diameter_` that we passed to the constructor.
+
+### Vectors!
+
+A vector is defined as "a quantity having **direction** as well as **magnitude**, especially as determining the position of one point in space relative to another". What does that mean?
+
+![vector](vectorDefine.gif)
+
+Here are some comparisons:
+
+![vector versus scalar](vectorVsScalar.jpg)
+
+### Adding Functions
+
+```javascript
+//this will go in a file called 'stars.js'
+
+function Star(x_, y_, diameter_){
+    this.position = createVector(x_, y_);
+    this.velocity = createVector(random(2,5), random(-10,-5));
+    this.accel = createVector(0,0);
+    this.diameter = diameter_;
+
+    //our functions go below here!
+    this.applyForce = function(force){
+        this.accel.add(force)
+    };//end applyForce()
+
+    this.update = function(){
+        this.velocity.add(this.accel);
+        this.position.add(this.velocity);
+        this.accel.mult(0);
+    }
+
+    this.display = function(){
+        fill(255);
+        noStroke();
+        ellipse(this.position.x, this.position.y, this.diameter, this.diameter);
+        this.update();
+    }
+    //our functions go above here!
+}
+```
+
+Okay, that was kind of a lot! Let's break it down.
+
+We created three functions: `applyForce()`, `update()`, and `display()`.
+
+*applyForce* takes one parameter. It adds the parameter to our *accel* vector.
+
+*update* takes no parameters. It adds the acceleration to the velocity, which then gets added to the position; then, it nullifies the acceleration by multiplying *accel* by 0. We do this so the acceleration does not compound and get out of control!
+
+*display* takes no parameters. It sets the fill color of our star, and turns the stroke off as well. We then draw an ellipse of size *diameter* at the x and y component of the vector *position*. Finally we call the update function. Viola, se fine. Well, almost.
+
+We now need to create our first star object!
