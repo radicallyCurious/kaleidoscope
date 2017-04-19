@@ -28,7 +28,7 @@ Now think, what **types** of data would we attach to these qualities of our ball
 3) boolean
 4) string (maybe a person object?!)
 
-All this data belongs to our *ball object*. We can create a single *ball object* or many *ball objects*. Each one we make could be different, or they can all be the same. It's up to you and the purpose behind making these *ball objects*. You are the creator of these things. Make them as crazy and wacky (or as boring and neutral) as you'd like. 
+All this data belongs to our *ball object*. We can create a single *ball object* or many *ball objects*. Each one we make could be different, or they can all be the same. It's up to you and the purpose behind making these *ball objects*. You are the creator of these things. Make them as crazy and wacky (or as boring and neutral) as you'd like.
 
 Just how things have qualities, they have reactions and interactions. If you drop your newly created ball, what happens?! Does it bounce? Does it roll on the uneven floor beneath it? Does it phase through the floor (because it is a ghost ball)? Does it burst into a bouquet of flowers? Its up to you!
 
@@ -41,17 +41,17 @@ Accessing an object's qualities (its color, size, etc.) is accessed the same way
 `ball.color`.
 
 ## Constructors
-A constructor is a **special function**, which every object is created from, but is a function nonetheless. The constructor is where you define an object. It is where you give all the numbers, strings, and booleans a relation to each other. 
+A constructor is a **special function**, which every object is created from, but is a function nonetheless. The constructor is where you define an object. It is where you give all the numbers, strings, and booleans a relation to each other.
 
-Since we are using JavaScript, we have to signal our need to create an object with our constructor function. That signal is the *new* keyword. 
+Since we are using JavaScript, we have to signal our need to create an object with our constructor function. That signal is the *new* keyword.
 
 Let's go back to our ball object. Here's an example of what our constructor for the ball object could look like:
 
 ```javascript
-function Ball(xposition, yposition, size){
+function Ball(xposition, yposition, size_){
   this.x = xposition;
   this.y = yposition;
-  this.size = size;
+  this.size = size_;
 }
 ```
 
@@ -65,3 +65,28 @@ How would we create an object with this?
 //underneath our Ball constructor!
 var b1 = new Ball(100,100,20);
 ```
+
+Awesome, and now we have a ball object!
+
+Here's how we can access some of it's data (it's attributes):
+
+```javascript
+//normal javascript style:
+console.log(b1.x);
+console.log(b1.y);
+console.log(b1.size);
+
+//or in processing style:
+ellipse(b1.x, b1.y, b1.size, b1.size);
+```
+
+So, we now know how to:
+- create a constructor
+- create an object using the constructor and the *new* keyword
+- access the attributes of an object
+
+Creating functions for an object is pretty easy, and we will explore that while we build up our shooting stars objects.
+
+---
+
+## Creating Our Shooting Stars
