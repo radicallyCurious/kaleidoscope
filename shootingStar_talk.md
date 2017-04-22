@@ -284,3 +284,81 @@ Now onto the event where we create and add more star objects to our `stars[]` ar
 `mouseReleased()` will create a new Star object and add it to the end of our `stars[]` array. That's what *push* is for. It is a function of all arrays (they're really lists and not arrays, but humor for a bit :P). *push* adds whatever data is inside the parenthesis to the end of the array, in this case its the `stars[]` array.
 
 Click on the canvas and see what happens!
+
+### Adding the Explosion
+Okay bear with me here. We're going to overhaul some of the code to create some explosions.
+
+We're going to make each star object explode into 100 or so tinier star objects when it reaches roughly the middle of the screen.
+
+Ready. Set. Go.
+
+```javascript
+//inside our Star constructor
+
+function Star(x_, y_, diameter_){
+
+    this.position = createVector(x_, y_);
+    this.velocity = createVector(random(2,5), random(-10,-5));
+    this.accel = createVector(0,0);
+    this.diameter = diameter_;
+    this.explode = false;//added this!
+    this.dust = [];//added this!
+
+    //added this!:
+    this.createDust = function(){
+        for(var i = 0; i < 5; i++){
+            this.dust[i] = new Star((random(-30,30)+this.position.x), (random(-30,30)+this.position.y), 5);
+        }//end for loop
+    }//end createDust()
+
+    this.applyForce = function(force){
+        this.accel.add(force)
+    };//end applyForce()
+
+    this.update = function(){
+        this.velocity.add(this.accel);
+        this.position.add(this.velocity);
+        this.accel.mult(0);
+        //updated from here!
+        //if the star reaches the half point of the screen
+        if(this.position.x >= width/2){
+            this.explode = true;//set our explosion boolean to true
+        }
+        if(this.position.y > height){
+            this.explode = false;
+        }
+        //if our star has reach the half point of the screen
+        if(this.explode){
+            this.createDust();//run the createDust() function
+            for(var i = 0; i < this.dust.length; i++){
+            //apply all the necessary forces as per our original Star functions
+                this.dust[i].velocity.add(this.accel);
+                this.dust[i].position.add(this.velocity);
+                this.dust[i].accel.mult(0);
+            }//end for loop
+        }
+        //updated until here!
+    };//end update()
+
+    this.display = function(){
+        fill(255);
+        noStroke();
+        this.update();
+        //updated from here!
+        //if our original Star object has reached half point of the screen
+        if(this.explode){
+            for(var i = 0; i < this.dust.length; i++){
+                //draw all the dust (little stars) in the array of dust[]
+                ellipse(this.dust[i].position.x, this.dust[i].position.y, this.dust[i].diameter, this.dust[i].diameter);
+            }
+        }
+        //if our original star hasn't reached half point of the screen
+        if(!this.explode){
+            //draw only the original star
+            ellipse(this.position.x, this.position.y, this.diameter, this.diameter);
+        }//updated until here!
+    };//end display()
+}//end Star()
+
+//setup() and draw() below here!
+```
