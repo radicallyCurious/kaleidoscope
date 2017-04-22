@@ -101,7 +101,7 @@ Creating functions for an object is pretty easy, and we will explore that while 
 
 ---
 
-## Creating Our Shooting Stars
+## Creating A Shooting Star
 
 ### The Star Constructor
 Here's our ball class from earlier:
@@ -220,3 +220,67 @@ Let's break this down.
 In `setup()`, we create a canvas to draw on. We then create a vector that constantly points down, which acts like gravity in this world of ours. We then create a Star object and set it to `star1`, which is a global variable and we can access it anywhere in our program.
 
 In `draw()`, we set the background to 0, and later on we'll change it to add in some star trails! For now though, its a deep, dark black. We then apply gravity to our `star1`. Finally, we call `star1`'s function `display()` which creates an ellipse and moves it on its merry way.
+
+## Creating Many Shooting Stars
+
+Okay, we can create a single shooting star. Great!
+
+Now we're going to take it further.
+
+We're going to accomplish a few things here:
+- create multiple stars based off of an event (key press or mouse press)
+- keep track of multiple stars
+- create an explosion of stars from a single star, when it reaches a certain point
+
+Let's get started.
+
+### Create Multiple Stars
+Outside of our Star constructor, make sure your code looks like this:
+
+```javascript
+var star1;
+var gravity;
+var stars = []; //an uninitialized array of stars!
+
+//our always necessary and wonderful setup() and draw() functions
+function setup(){
+    createCanvas(400,400);//creating a square canvas
+    gravity = createVector(0, 0.2);//create a vector, set to gravity variable
+    //creating the object
+    star1 = new Star(10, 300, 20);//set the object to star1 variable
+
+    //we're going to use a for loop
+
+}
+
+function draw(){
+    background(0);//set to black
+    star1.applyForce(gravity);
+    star1.display();
+
+    //for loops!
+    for(var i = 0; i < stars.length; i++){
+        stars[i].applyForce(gravity);
+        stars[i].display();
+    }//end of the for loop
+}//end of draw()
+
+function mouseReleased(){
+    stars.push(new Star(random(10,50), random(200,300), 20));
+    console.log("mouse");
+}//end of mouseReleased()
+```
+
+Here's the breakdown.
+
+We added two chunks of code. We added a for loop and a function called `mouseReleased()`.
+
+You can read up on the [mouseReleased](https://p5js.org/reference/#/p5/mouseReleased) function.
+
+Our for loop does two things. It applies gravity to all the star objects in our `stars[]` array. It also calls each star object's `display()` function.
+
+Now onto the event where we create and add more star objects to our `stars[]` array.
+
+`mouseReleased()` will create a new Star object and add it to the end of our `stars[]` array. That's what *push* is for. It is a function of all arrays (they're really lists and not arrays, but humor for a bit :P). *push* adds whatever data is inside the parenthesis to the end of the array, in this case its the `stars[]` array.
+
+Click on the canvas and see what happens!
