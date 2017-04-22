@@ -190,3 +190,33 @@ We created three functions: `applyForce()`, `update()`, and `display()`.
 *display* takes no parameters. It sets the fill color of our star, and turns the stroke off as well. We then draw an ellipse of size *diameter* at the x and y component of the vector *position*. Finally we call the update function. Viola, se fine. Well, almost.
 
 We now need to create our first star object!
+
+### First Star Object
+```javascript
+//below the Star constructor
+
+//declaring the variable that contains the object, do not initialize a value
+var star1;
+//declare a variable that will be a vector that constantly points down, to act like gravity
+//do not initialize it
+var gravity;
+
+//our always necessary and wonderful setup() and draw() functions
+function setup(){
+    createCanvas(400,400);//creating a square canvas
+    gravity = createVector(0, 0.2);//create a vector, set to gravity variable
+    //creating the object
+    star1 = new Star(10, 300, 20);//set the object to star1 variable
+}
+
+function draw(){
+    background(0);//set to black
+    star1.applyForce(gravity);
+    star1.display();
+}
+```
+Let's break this down.
+
+In `setup()`, we create a canvas to draw on. We then create a vector that constantly points down, which acts like gravity in this world of ours. We then create a Star object and set it to `star1`, which is a global variable and we can access it anywhere in our program.
+
+In `draw()`, we set the background to 0, and later on we'll change it to add in some star trails! For now though, its a deep, dark black. We then apply gravity to our `star1`. Finally, we call `star1`'s function `display()` which creates an ellipse and moves it on its merry way.
