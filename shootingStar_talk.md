@@ -59,7 +59,11 @@ Great, we have our constructor function!
 
 Right now, it saves some information. Not very interesting, but crucial!
 
+What does the *this* keyword refer to?
 How would we create an object with this?
+
+
+
 
 ```javascript
 //underneath our Ball constructor!
@@ -67,6 +71,14 @@ var b1 = new Ball(100,100,20);
 ```
 
 Awesome, and now we have a ball object!
+
+---
+
+Let's talk about the *this* keyword for a moment.
+
+The *this* keyword refers to the object we are talking about. If we are dealing with our `b1` object above, the *this* keyword in our constructor **refers to the** `b1` **object**. If we create an object called `b2`, the *this* keyword **refers to the** `b2` **object**.
+
+---
 
 Here's how we can access some of it's data (it's attributes):
 

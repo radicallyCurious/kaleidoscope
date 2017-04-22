@@ -1,6 +1,6 @@
-function Star(x, y, diameter_){
+function Star(x_, y_, diameter_){
 
-    this.position = createVector(x, y);
+    this.position = createVector(x_, y_);
     this.velocity = createVector(random(2,5), random(-10,-5));
     this.accel = createVector(0,0);
     this.diameter = diameter_;
