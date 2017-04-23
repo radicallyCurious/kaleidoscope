@@ -2,19 +2,16 @@
 ### Purpose
 Learn about objects and constructors using p5js during Creative Coding Fest.
 
-### Why?
-
-### What to Do After the Workshop?
-
+We'll create some shooting stars which will turn into star dust!
 ---
 
 ## Eat Your Cake and Have It Too
-Imagine you are a baker. You walk by someone else's bakery during your mid day stroll to stretch your legs., and you see a cake. It looks absolutely fantastic and delicious. You have to find out everything you can about this cake!
+Imagine you are a baker. You walk by someone else's bakery during your mid day stroll to stretch your legs, and you see a cake. It looks absolutely fantastic and delicious. You have to find out everything you can about this cake!
 
 **What are some questions you might ask the baker?**
 
 ## Objects
-An object is a **thing**. You get to decide what that thing is. This **thing** begins to take shape when you describe it. Well, how are you supposed to describe it? You describe it in your program by attaching data (numbers, words, even other objects!) to it. Every thing in our known universe has certain qualities that define what it is. Take a ball for example. A ball:
+An object is a **thing**. You get to decide what that thing is and what it will do. This **thing** begins to take shape when you describe it. Well, how are you supposed to describe it? You describe it in your program by attaching data to it (numbers, words, even other objects!). Every thing in our known universe has certain qualities that define what it is. Take a ball for example. A ball:
 
 1) has a color
 2) has a size
@@ -129,7 +126,7 @@ A few things changed, such as the name of the constructor, the parameters, and t
 
 Here's the breakdown.
 
-We create a vector called *position* (what's a vector?! more on this soon) that has an initial x and y component of the `x_` and `y_` passed to the constructor.
+We create a vector called *position* that has an initial x and y component of the `x_` and `y_` passed to the constructor (what's a vector?! more on this soon).
 
 Then, we create another vector called *velocity* with an initial x component of any number between 2 and 5 and a y component of any number between -10 and -5.
 
@@ -238,6 +235,7 @@ Let's get started.
 Outside of our Star constructor, make sure your code looks like this:
 
 ```javascript
+//below the star constructor
 var star1;
 var gravity;
 var stars = []; //an uninitialized array of stars!
