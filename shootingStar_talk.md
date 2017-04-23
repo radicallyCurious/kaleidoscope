@@ -362,3 +362,27 @@ function Star(x_, y_, diameter_){
 
 //setup() and draw() below here!
 ```
+Okay, let's break all that down.
+
+We created an array called `dust[]`, which will contain our baby star objects.
+We then created a new function called `createDust()`, which will populate our `dust[]` array with (you guessed it!) five little star objects. We also added a boolean attribute called `explode` which we use to test against if our big star objects reach half way across the screen.
+
+Inside of `update()` where we tell our star objects which position to move to, we check the star object's position. If it reaches half way across the screen, we set the `explode` boolean to true. If we have the `explode` boolean set to true, we then run the `createDust()` function, which populates the array `dust[]`. We update each little star object's position as well.
+
+Inside of `display()`, we add two if statements. The first checks if the `explode` boolean is set to true. If `explode` is true, then the little star objects in the `dust[]` array will be drawn to the screen, and the original large star object **will not** be drawn to the screen. The second if statement checks if the `explode` boolean is set to false. If `explode` is false, then the original big star object will be drawn to the screen.
+
+So the thought process works like this:
+
+1) Has the mouse been clicked?
+    - Yes -> move on.
+    - No -> do nothing.
+2) Create a star object with a random vector.
+3) Is the star object to left side of the screen?
+    - Yes -> keep `explode` set to false and draw the star object to the screen
+    - No -> set `explode` to true and draw the array of little star objects to the screen
+
+## Add Ons
+- change the color of the shooting stars
+- add some alpha to the background to add star trails
+- play with different patterns of little star objects
+- change how the original star objects appear
